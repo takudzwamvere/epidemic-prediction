@@ -1,5 +1,4 @@
 import React from 'react'
-import { InteractiveHoverButton } from '../ui/interactive-hover-button'
 import Image from 'next/image'
 
 const About = () => {
@@ -11,7 +10,7 @@ const About = () => {
             <p className='text-xl text-center'>You can freely view publicly released data, OR BETTER YET!, sign up so that you can get email and SMS notifications</p>
             <div className='w-full flex flex-col md:flex-row items-center justify-center p-3 gap-3 md:gap-10'>
                 <button className='bg-green-500 text-white px-4 py-3'>About EpiMetrics</button>
-                <InteractiveHoverButton>Sign Up</InteractiveHoverButton>
+                <button className='bg-green-500 text-white px-4 py-3'>Sign Up</button>
             </div>
         </section>
 

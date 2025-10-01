@@ -3,7 +3,6 @@ import { EB_Garamond } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { InteractiveHoverButton } from '../ui/interactive-hover-button'
 
 const ebGaramond = EB_Garamond({
   weight: '400',
@@ -27,7 +26,7 @@ const Header = () => {
         </section>
 
         <section className='hidden md:flex'>
-            <Link href='/signIn'><InteractiveHoverButton>Sign In</InteractiveHoverButton></Link>
+            <Link href='/signIn'><button className='bg-green-500 text-white px-4 py-3'>Sign Up</button></Link>
         </section>
 
         <section className='md:hidden z-10'>
@@ -49,7 +48,7 @@ const Header = () => {
             <Link href='/' onClick={() => {setIsOpen(false)}}>Contact</Link>
             <Link href='/' onClick={() => {setIsOpen(false)}}>Contribute</Link>
             <div onClick={() => {setIsOpen(false)}}>
-                <Link href='/signIn'><InteractiveHoverButton>Sign In</InteractiveHoverButton></Link>
+                <Link href='/signIn'><button className='bg-green-500 text-white px-4 py-3'>Sign Up</button></Link>
             </div>
         </section>
     </nav>
