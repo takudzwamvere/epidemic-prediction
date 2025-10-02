@@ -3,6 +3,7 @@ import { EB_Garamond } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
+<<<<<<< HEAD
 import {
   SignInButton,
   SignUpButton,
@@ -10,6 +11,9 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs';
+=======
+import { InteractiveHoverButton } from '../ui/interactive-hover-button'
+>>>>>>> parent of 2ba7d3a (deployment)
 
 const ebGaramond = EB_Garamond({
   weight: '400',
@@ -32,6 +36,7 @@ const Header = () => {
           <Link href='/contribute' className=''>Contribute</Link>
         </section>
 
+<<<<<<< HEAD
         <section className='hidden md:flex items-center gap-3'>
           <SignedOut>
             <SignInButton mode="modal">
@@ -48,6 +53,10 @@ const Header = () => {
           <SignedIn>
             <UserButton afterSignOutUrl="/" />
           </SignedIn>
+=======
+        <section className='hidden md:flex'>
+            <Link href='/signIn'><InteractiveHoverButton>Sign In</InteractiveHoverButton></Link>
+>>>>>>> parent of 2ba7d3a (deployment)
         </section>
 
         <section className='md:hidden z-10'>
@@ -89,7 +98,11 @@ const Header = () => {
           </SignedOut>
           <SignedIn>
             <div onClick={() => {setIsOpen(false)}}>
+<<<<<<< HEAD
               <UserButton afterSignOutUrl="/" />
+=======
+                <Link href='/signIn'><InteractiveHoverButton>Sign In</InteractiveHoverButton></Link>
+>>>>>>> parent of 2ba7d3a (deployment)
             </div>
           </SignedIn>
         </div>
