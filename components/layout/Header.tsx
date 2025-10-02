@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {
   SignInButton,
   SignUpButton,
@@ -11,6 +12,9 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs';
+=======
+import { InteractiveHoverButton } from '../ui/interactive-hover-button'
+>>>>>>> parent of 2ba7d3a (deployment)
 =======
 import { InteractiveHoverButton } from '../ui/interactive-hover-button'
 >>>>>>> parent of 2ba7d3a (deployment)
@@ -56,6 +60,9 @@ const Header = () => {
 =======
         <section className='hidden md:flex'>
             <Link href='/signIn'><InteractiveHoverButton>Sign In</InteractiveHoverButton></Link>
+<<<<<<< HEAD
+>>>>>>> parent of 2ba7d3a (deployment)
+=======
 >>>>>>> parent of 2ba7d3a (deployment)
         </section>
 
@@ -99,7 +106,11 @@ const Header = () => {
           <SignedIn>
             <div onClick={() => {setIsOpen(false)}}>
 <<<<<<< HEAD
+<<<<<<< HEAD
               <UserButton afterSignOutUrl="/" />
+=======
+                <Link href='/signIn'><InteractiveHoverButton>Sign In</InteractiveHoverButton></Link>
+>>>>>>> parent of 2ba7d3a (deployment)
 =======
                 <Link href='/signIn'><InteractiveHoverButton>Sign In</InteractiveHoverButton></Link>
 >>>>>>> parent of 2ba7d3a (deployment)
