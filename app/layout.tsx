@@ -1,21 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
-import { Shell } from "@/components/layout/Shell";
+import AdminLayout from "@/components/AdminLayout";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const poppins = Poppins({
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "EPI-SENTRY | Advanced Epidemic Prediction",
-  description: "Next-gen AI powered epidemic surveillance and response system.",
+  title: "Admin Dashboard Demo",
+  description: "Frontend specific demo",
 };
 
 export default function RootLayout({
@@ -26,9 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 text-slate-900`}
+        className={`${poppins.className} antialiased min-h-svh w-full bg-gray-50`}
       >
-        <Shell>{children}</Shell>
+        <AdminLayout>{children}</AdminLayout>
       </body>
     </html>
   );
