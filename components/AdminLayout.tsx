@@ -13,6 +13,7 @@ import {
   ChevronRight,
   Home,
   LogOut,
+  Menu,
 } from "lucide-react";
 
 interface SidebarItem {
@@ -26,31 +27,31 @@ const sidebarItems: SidebarItem[] = [
   {
     name: "Dashboard",
     href: "/",
-    icon: <BarChart3 className="w-5 h-5" />,
+    icon: <BarChart3 className="w-4 h-4" />,
     description: "Overview and analytics",
   },
   {
     name: "Upload Datasets",
     href: "/upload",
-    icon: <Upload className="w-5 h-5" />,
+    icon: <Upload className="w-4 h-4" />,
     description: "Upload and process data",
   },
   {
     name: "Dataset Management",
     href: "/datasets",
-    icon: <Database className="w-5 h-5" />,
+    icon: <Database className="w-4 h-4" />,
     description: "Manage uploaded datasets",
   },
   {
     name: "Quality Reports",
     href: "/reports",
-    icon: <FileText className="w-5 h-5" />,
+    icon: <FileText className="w-4 h-4" />,
     description: "View data quality reports",
   },
   {
     name: "Settings",
     href: "/settings",
-    icon: <Settings className="w-5 h-5" />,
+    icon: <Settings className="w-4 h-4" />,
     description: "Administrator Settings",
   },
 ];
@@ -76,7 +77,7 @@ export default function AdminLayout({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Mobile sidebar backdrop */}
       {mobileSidebarOpen && (
         <div
@@ -89,9 +90,9 @@ export default function AdminLayout({
       <div
         className={`
         fixed inset-y-0 left-0 z-50
-        bg-white border-r border-gray-200 shadow-sm
+        bg-slate-50 border-r border-slate-200
         transform transition-transform duration-300 ease-in-out
-        ${sidebarOpen ? "w-64" : "w-20"}
+        ${sidebarOpen ? "w-64" : "w-16"}
         ${
           mobileSidebarOpen
             ? "translate-x-0"
@@ -100,21 +101,18 @@ export default function AdminLayout({
       `}
       >
         {/* Sidebar Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
+        <div className="flex items-center justify-between h-14 px-4 border-b border-slate-200 bg-white">
           {sidebarOpen && (
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-green-400 rounded-lg flex items-center justify-center">
-                <Shield className="w-5 h-5 text-white" />
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 bg-blue-600 flex items-center justify-center">
+                <Shield className="w-4 h-4 text-white" />
               </div>
-              <div>
-                <h1 className="text-gray-900 font-bold text-lg">Admin Panel</h1>
-                <p className="text-gray-500 text-xs">Epidemic Oracle</p>
-              </div>
+              <span className="text-slate-900 font-bold text-sm tracking-tight">EPIDEMIC ORACLE</span>
             </div>
           )}
           {!sidebarOpen && (
-            <div className="w-8 h-8 bg-green-400 rounded-lg flex items-center justify-center mx-auto">
-              <Shield className="w-5 h-5 text-white" />
+            <div className="w-6 h-6 bg-blue-600 flex items-center justify-center mx-auto">
+              <Shield className="w-4 h-4 text-white" />
             </div>
           )}
 
@@ -122,7 +120,7 @@ export default function AdminLayout({
           {sidebarOpen && (
             <button
               onClick={toggleSidebar}
-              className="lg:flex hidden items-center justify-center w-8 h-8 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+              className="lg:flex hidden items-center justify-center text-slate-400 hover:text-slate-600"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -130,80 +128,72 @@ export default function AdminLayout({
         </div>
 
         {/* Navigation Items */}
-        <nav className="flex-1 px-3 py-4 space-y-2">
+        <nav className="flex-1 py-4">
+          <ul className="space-y-0.5">
           {sidebarItems.map((item) => {
             const isActive = isActiveLink(item.href);
 
             return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setMobileSidebarOpen(false)}
-                className={`
-                  flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-200 group
-                  ${
-                    isActive
-                      ? "bg-green-50 text-green-600 border-l-2 border-green-400"
-                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-                  }
-                `}
-              >
-                <div
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  onClick={() => setMobileSidebarOpen(false)}
                   className={`
-                  flex-shrink-0 transition-colors
-                  ${
-                    isActive
-                      ? "text-green-400"
-                      : "text-gray-400 group-hover:text-gray-600"
-                  }
-                `}
+                    flex items-center gap-3 px-4 py-3 transition-colors duration-150 relative
+                    ${
+                      isActive
+                        ? "bg-white text-blue-700 font-medium border-r-2 border-blue-600"
+                        : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                    }
+                  `}
                 >
-                  {item.icon}
-                </div>
-
-                {sidebarOpen && (
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm font-medium">{item.name}</div>
-                    {item.description && (
-                      <div
-                        className={`text-xs truncate ${
-                          isActive ? "text-green-600/60" : "text-gray-400"
-                        }`}
-                      >
-                        {item.description}
-                      </div>
-                    )}
+                  <div
+                    className={`
+                    flex-shrink-0
+                    ${
+                      isActive
+                        ? "text-blue-600"
+                        : "text-slate-400 group-hover:text-slate-600"
+                    }
+                  `}
+                  >
+                    {item.icon}
                   </div>
-                )}
-              </Link>
+
+                  {sidebarOpen && (
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm">{item.name}</div>
+                    </div>
+                  )}
+                </Link>
+              </li>
             );
           })}
+          </ul>
         </nav>
 
         {/* Sidebar Footer */}
-        <div className="p-4 border-t border-gray-200">
+        <div className="p-4 border-t border-slate-200 bg-slate-50">
           {!sidebarOpen && (
             <button
               onClick={toggleSidebar}
-              className="w-full flex items-center justify-center py-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+              className="w-full flex items-center justify-center py-2 text-slate-400 hover:text-slate-600"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
           )}
 
           {sidebarOpen && (
-            <div className="space-y-3">
-              <div className="flex items-center gap-3 px-3 py-2">
-                <div className="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center">
-                  <span className="text-white text-sm font-medium">A</span>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-slate-200 flex items-center justify-center border border-slate-300">
+                <span className="text-slate-600 text-xs font-bold">JD</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-slate-900 text-sm font-medium truncate">
+                  Dr. John Doe
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-gray-900 text-sm font-medium truncate">
-                    Demo User
-                  </div>
-                  <div className="text-gray-500 text-xs truncate">
-                    Administrator
-                  </div>
+                <div className="text-slate-500 text-xs truncate">
+                  Chief Epidemiologist
                 </div>
               </div>
             </div>
@@ -214,48 +204,34 @@ export default function AdminLayout({
       {/* Main Content */}
       <div
         className={`
-        min-h-screen transition-all duration-300
-        ${sidebarOpen ? "lg:pl-64" : "lg:pl-20"}
+        min-h-screen transition-all duration-300 flex flex-col
+        ${sidebarOpen ? "lg:pl-64" : "lg:pl-16"}
       `}
       >
         {/* Top Bar */}
-        <header className="bg-white border-b border-gray-200 sticky top-0 z-30">
-          <div className="flex items-center justify-between p-4">
+        <header className="bg-white border-b border-slate-200 sticky top-0 z-30 h-14 flex items-center px-6">
+          <div className="flex items-center justify-between w-full">
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setMobileSidebarOpen(true)}
-                className="lg:hidden flex items-center justify-center w-10 h-10 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+                className="lg:hidden text-slate-600 hover:text-slate-900"
               >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
+                <Menu className="w-5 h-5" />
               </button>
 
-              <div className="flex items-center gap-2 text-sm text-gray-500">
-                <span>Admin</span>
-                <span>/</span>
-                <span className="text-gray-900 font-medium capitalize">
-                  Dashboard
-                </span>
+              <div className="flex items-center gap-2 text-sm text-slate-500">
+                <span>District 4</span>
+                <span className="text-slate-300">/</span>
+                <span className="text-slate-900 font-medium">Dashboard</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              <button className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors text-sm">
+            <div className="flex items-center gap-4">
+              <button className="flex items-center gap-2 text-slate-600 hover:text-slate-900 text-sm font-medium">
                 <Settings className="w-4 h-4" />
                 <span className="hidden sm:inline">Settings</span>
               </button>
-              <button className="flex items-center gap-2 px-3 py-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors text-sm">
+              <button className="flex items-center gap-2 text-red-600 hover:text-red-700 text-sm font-medium">
                 <LogOut className="w-4 h-4" />
                 <span className="hidden sm:inline">Log out</span>
               </button>
@@ -264,7 +240,7 @@ export default function AdminLayout({
         </header>
 
         {/* Page Content */}
-        <main className="p-6 max-w-[1600px] mx-auto w-full">{children}</main>
+        <main className="flex-1 p-6 bg-slate-50 overflow-auto">{children}</main>
       </div>
     </div>
   );

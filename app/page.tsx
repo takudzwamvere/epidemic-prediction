@@ -8,333 +8,220 @@ import {
   MapPin,
   TrendingUp,
   Activity,
+  AlertTriangle,
+  Download,
+  MoreHorizontal
 } from "lucide-react";
 
 export default function Home() {
-  // Mock data for display purposes
   const adminStats = [
     {
-      name: "My Datasets",
+      name: "Total Datasets",
       value: "8",
-      change: "+2",
-      changeType: "positive",
+      change: "+2 this week",
       icon: Database,
-      description: "Total uploaded files",
     },
     {
-      name: "Quality Score",
+      name: "Avg Quality Score",
       value: "84%",
-      change: "+3%",
-      changeType: "positive",
+      change: "+3% vs last week",
       icon: TrendingUp,
-      description: "Average quality grade",
     },
     {
-      name: "This Month",
+      name: "New Uploads",
       value: "3",
-      change: "+1",
-      changeType: "positive",
+      change: "Last 24h",
       icon: FileText,
-      description: "New uploads",
     },
     {
-      name: "Data Records",
+      name: "Health Records",
       value: "2,457",
-      change: "+156",
-      changeType: "positive",
+      change: "+156 new records",
       icon: Activity,
-      description: "Total health records",
     },
   ];
 
   const myRecentActivities = [
     {
-      id: 1,
-      action: "uploaded",
+      id: "ACT-001",
+      action: "Upload",
       target: "health_center_data.csv",
-      time: "2 hours ago",
-      type: "upload",
-      quality: "A",
+      user: "Dr. John Doe",
+      time: "2024-03-20 14:30",
+      status: "Completed",
     },
     {
-      id: 2,
-      action: "uploaded",
+      id: "ACT-002",
+      action: "Upload",
       target: "community_health_workers.csv",
-      time: "1 day ago",
-      type: "upload",
-      quality: "B",
+      user: "Dr. John Doe",
+      time: "2024-03-19 09:15",
+      status: "Processing",
     },
     {
-      id: 3,
-      action: "downloaded",
+      id: "ACT-003",
+      action: "Download",
       target: "processed_epidemic_data.csv",
-      time: "2 days ago",
-      type: "download",
+      user: "Admin System",
+      time: "2024-03-18 16:45",
+      status: "Completed",
     },
     {
-      id: 4,
-      action: "uploaded",
+      id: "ACT-004",
+      action: "Upload",
       target: "hospital_admissions.xml",
-      time: "3 days ago",
-      type: "upload",
-      quality: "A",
+      user: "Dr. John Doe",
+      time: "2024-03-17 11:20",
+      status: "Failed",
+    },
+    {
+      id: "ACT-005",
+      action: "Report",
+      target: "Monthly Summary Q1",
+      user: "System Job",
+      time: "2024-03-17 01:00",
+      status: "Completed",
     },
   ];
 
-  const locationData = {
-    healthFacilities: 12,
-    population: 350000,
-    lastOutbreak: "None detected",
-  };
-
-  const getActivityIcon = (type: string) => {
-    switch (type) {
-      case "upload":
-        return <Upload className="w-4 h-4" />;
-      case "download":
-        return <Database className="w-4 h-4" />;
-      default:
-        return <FileText className="w-4 h-4" />;
-    }
-  };
-
-  const getActivityColor = (type: string) => {
-    switch (type) {
-      case "upload":
-        return "text-blue-400";
-      case "download":
-        return "text-green-400";
-      default:
-        return "text-gray-400";
-    }
-  };
-
-  const getQualityColor = (quality: string) => {
-    switch (quality) {
-      case "A":
-        return "text-green-400";
-      case "B":
-        return "text-blue-400";
-      case "C":
-        return "text-yellow-400";
-      case "D":
-        return "text-orange-400";
-      case "F":
-        return "text-red-400";
-      default:
-        return "text-gray-400";
-    }
-  };
-
   return (
-    <div className="space-y-6">
-      {/* Welcome Header */}
-      <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-        <div className="flex items-center justify-between">
-          <div>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="flex items-center gap-2 text-green-600">
-                <MapPin className="w-5 h-5" />
-                <span className="font-semibold">Health District</span>
-              </div>
-            </div>
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">
-              Welcome back, Demo User
-            </h1>
-            <p className="text-gray-600">
-              Monitoring health data for your district.{" "}
-              {locationData.lastOutbreak}.
-            </p>
-          </div>
-          <div className="hidden md:flex items-center justify-center w-12 h-12 bg-green-50 rounded-lg">
-            <BarChart3 className="w-6 h-6 text-green-400" />
-          </div>
+    <div className="space-y-6 max-w-7xl mx-auto">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Overview</h1>
+          <p className="text-slate-500 text-sm mt-1">
+            Real-time monitoring of epidemic prediction data.
+          </p>
+        </div>
+        <div className="flex gap-2">
+            <button className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-300 text-slate-700 text-sm font-medium hover:bg-slate-50">
+                <Download className="w-4 h-4" /> Export Report
+            </button>
         </div>
       </div>
 
-      {/* Location Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-500 text-sm">Health Facilities</p>
-              <p className="text-2xl font-bold text-gray-900 mt-1">
-                {locationData.healthFacilities}
-              </p>
-            </div>
-            <div className="flex items-center justify-center w-12 h-12 bg-green-50 rounded-lg">
-              <Activity className="w-6 h-6 text-green-400" />
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-500 text-sm">Population</p>
-              <p className="text-2xl font-bold text-gray-900 mt-1">
-                {(locationData.population / 1000).toFixed(0)}K
-              </p>
-            </div>
-            <div className="flex items-center justify-center w-12 h-12 bg-green-50 rounded-lg">
-              <TrendingUp className="w-6 h-6 text-green-400" />
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-500 text-sm">Outbreak Status</p>
-              <p className="text-2xl font-bold text-green-400 mt-1">Clear</p>
-            </div>
-            <div className="flex items-center justify-center w-12 h-12 bg-green-50 rounded-lg">
-              <FileText className="w-6 h-6 text-green-400" />
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-500 text-sm">Last Report</p>
-              <p className="text-2xl font-bold text-gray-900 mt-1">3 days</p>
-            </div>
-            <div className="flex items-center justify-center w-12 h-12 bg-green-50 rounded-lg">
-              <Database className="w-6 h-6 text-green-400" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* My Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* KPI Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {adminStats.map((stat) => (
           <div
             key={stat.name}
-            className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm"
+            className="bg-white border border-slate-200 p-4 flex flex-col justify-between h-32"
           >
-            <div className="flex items-center justify-between">
+            <div className="flex items-start justify-between">
               <div>
-                <p className="text-gray-500 text-sm font-medium">
-                  {stat.name}
-                </p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">
-                  {stat.value}
-                </p>
-                <p className="text-gray-400 text-xs mt-1">
-                  {stat.description}
-                </p>
+                <p className="text-slate-500 text-xs uppercase font-semibold tracking-wider">{stat.name}</p>
+                <div className="mt-2 flex items-baseline gap-2">
+                    <span className="text-3xl font-bold text-slate-900">{stat.value}</span>
+                </div>
               </div>
-              <div className="flex items-center justify-center w-12 h-12 bg-green-50 rounded-lg">
-                <stat.icon className="w-6 h-6 text-green-400" />
-              </div>
+              <stat.icon className="w-5 h-5 text-slate-400" />
             </div>
-            <div className="flex items-center mt-4">
-              <span
-                className={`text-xs font-medium ${
-                  stat.changeType === "positive"
-                    ? "text-green-400"
-                    : "text-red-400"
-                }`}
-              >
+            <div className="text-xs text-slate-500 mt-2 border-t border-slate-100 pt-2">
                 {stat.change}
-              </span>
-              <span className="text-gray-400 text-xs ml-2">this week</span>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* My Recent Activity */}
-        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">
-            My Recent Activity
-          </h2>
-          <div className="space-y-4">
-            {myRecentActivities.map((activity) => (
-              <div
-                key={activity.id}
-                className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-              >
-                <div className="flex items-center gap-3">
-                  <div
-                    className={`flex-shrink-0 ${getActivityColor(
-                      activity.type
-                    )}`}
-                  >
-                    {getActivityIcon(activity.type)}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-gray-900 text-sm">
-                      <span className="text-gray-500">You </span>
-                      <span className="text-gray-500">
-                        {activity.action}{" "}
-                      </span>
-                      <span className="font-medium truncate">
-                        {activity.target}
-                      </span>
-                    </p>
-                    <p className="text-gray-400 text-xs mt-1">
-                      {activity.time}
-                    </p>
-                  </div>
-                </div>
-                {activity.quality && (
-                  <div
-                    className={`px-2 py-1 rounded text-xs font-bold ${getQualityColor(
-                      activity.quality
-                    )} bg-white`}
-                  >
-                    {activity.quality}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Main Data Table */}
+        <div className="lg:col-span-2 bg-white border border-slate-200">
+            <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+                <h3 className="font-semibold text-slate-900">Recent Audit Logs</h3>
+                <button className="text-blue-600 text-sm font-medium hover:underline">View All</button>
+            </div>
+            <div className="overflow-x-auto">
+                <table className="w-full text-sm text-left">
+                    <thead className="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200">
+                        <tr>
+                            <th className="px-6 py-3 font-medium">ID</th>
+                            <th className="px-6 py-3 font-medium">Action</th>
+                            <th className="px-6 py-3 font-medium">File / Target</th>
+                            <th className="px-6 py-3 font-medium">User</th>
+                            <th className="px-6 py-3 font-medium">Status</th>
+                            <th className="px-6 py-3 font-medium text-right">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                        {myRecentActivities.map((row) => (
+                            <tr key={row.id} className="hover:bg-slate-50">
+                                <td className="px-6 py-3 text-slate-500 font-mono text-xs">{row.id}</td>
+                                <td className="px-6 py-3 font-medium text-slate-900">{row.action}</td>
+                                <td className="px-6 py-3 text-slate-700">{row.target}</td>
+                                <td className="px-6 py-3 text-slate-500">{row.user}</td>
+                                <td className="px-6 py-3">
+                                    <span className={`
+                                        inline-flex items-center px-2 py-0.5 text-xs font-medium border
+                                        ${row.status === 'Completed' ? 'bg-green-50 text-green-700 border-green-200' : 
+                                          row.status === 'Processing' ? 'bg-blue-50 text-blue-700 border-blue-200' :
+                                          'bg-red-50 text-red-700 border-red-200'}
+                                    `}>
+                                        {row.status}
+                                    </span>
+                                </td>
+                                <td className="px-6 py-3 text-right text-slate-500 tabular-nums">{row.time}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        {/* Quick Actions */}
-        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">
-            Data Management
-          </h2>
-          <div className="space-y-3">
-            <button className="w-full flex items-center gap-3 px-4 py-3 bg-green-400 hover:bg-green-500 text-white rounded-lg transition-colors">
-              <Upload className="w-5 h-5" />
-              <span>Upload New Health Data</span>
-            </button>
-            <button className="w-full flex items-center gap-3 px-4 py-3 bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 rounded-lg transition-colors">
-              <Database className="w-5 h-5" />
-              <span>View My Datasets</span>
-            </button>
-            <button className="w-full flex items-center gap-3 px-4 py-3 bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 rounded-lg transition-colors">
-              <FileText className="w-5 h-5" />
-              <span>Quality Reports</span>
-            </button>
-          </div>
+        {/* Status / Quick Actions */}
+        <div className="space-y-4">
+            <div className="bg-white border border-slate-200 p-6">
+                 <h3 className="font-bold text-slate-900 mb-4">System Health</h3>
+                 <div className="space-y-4">
+                    <div className="flex items-center justify-between text-sm">
+                        <span className="text-slate-600">Sync Status</span>
+                        <span className="text-green-600 flex items-center font-medium">
+                            <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span> Operational
+                        </span>
+                    </div>
+                    <div className="w-full bg-slate-100 h-2">
+                        <div className="bg-green-500 h-2 w-[98%]"></div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between text-sm pt-2">
+                        <span className="text-slate-600">Storage Usage</span>
+                        <span className="text-slate-900 font-medium">45%</span>
+                    </div>
+                    <div className="w-full bg-slate-100 h-2">
+                        <div className="bg-blue-600 h-2 w-[45%]"></div>
+                    </div>
 
-          {/* Support */}
-          <div className="mt-6 pt-4 border-t border-gray-200">
-            <h3 className="text-sm font-semibold text-gray-600 mb-3">
-              Supported Formats
-            </h3>
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="text-center p-2 bg-gray-50 rounded text-gray-700">
-                CSV
-              </div>
-              <div className="text-center p-2 bg-gray-50 rounded text-gray-700">
-                JSON
-              </div>
-              <div className="text-center p-2 bg-gray-50 rounded text-gray-700">
-                XML
-              </div>
-              <div className="text-center p-2 bg-gray-50 rounded text-gray-400">
-                + More
-              </div>
+                     <div className="flex items-center justify-between text-sm pt-2">
+                        <span className="text-slate-600">CPU Load</span>
+                        <span className="text-slate-900 font-medium">12%</span>
+                    </div>
+                    <div className="w-full bg-slate-100 h-2">
+                        <div className="bg-slate-400 h-2 w-[12%]"></div>
+                    </div>
+                 </div>
             </div>
-          </div>
+
+            <div className="bg-white border border-slate-200 p-6">
+                <h3 className="font-semibold text-slate-900 mb-4">Quick Actions</h3>
+                <div className="grid grid-cols-2 gap-3">
+                     <button className="flex flex-col items-center justify-center p-3 border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all text-center">
+                        <Upload className="w-5 h-5 text-blue-600 mb-2" />
+                        <span className="text-xs font-medium text-slate-700">Upload Data</span>
+                     </button>
+                     <button className="flex flex-col items-center justify-center p-3 border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all text-center">
+                        <Database className="w-5 h-5 text-blue-600 mb-2" />
+                        <span className="text-xs font-medium text-slate-700">Manage DB</span>
+                     </button>
+                     <button className="flex flex-col items-center justify-center p-3 border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all text-center">
+                        <AlertTriangle className="w-5 h-5 text-amber-500 mb-2" />
+                        <span className="text-xs font-medium text-slate-700">Broadcast</span>
+                     </button>
+                     <button className="flex flex-col items-center justify-center p-3 border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all text-center">
+                        <MoreHorizontal className="w-5 h-5 text-slate-400 mb-2" />
+                        <span className="text-xs font-medium text-slate-700">More</span>
+                     </button>
+                </div>
+            </div>
         </div>
       </div>
     </div>

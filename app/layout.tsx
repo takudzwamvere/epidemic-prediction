@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import AdminLayout from "@/components/AdminLayout";
 
-const poppins = Poppins({
-  weight: ["400", "500", "600", "700"],
+const inter = Inter({
   subsets: ["latin"],
 });
 
@@ -21,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} antialiased min-h-svh w-full bg-gray-50`}
+        className={`${inter.className} antialiased min-h-svh w-full bg-gray-50`}
       >
         <AdminLayout>{children}</AdminLayout>
       </body>
